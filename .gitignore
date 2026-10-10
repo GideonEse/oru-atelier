@@ -1,0 +1,15 @@
+node_modules
+.output
+.vercel
+dist
+screenshots
+artifacts
+*.log
+.grok/og-pending
+.grok/skills
+.grok/references
+.grok/status
+.grok/preview.log
+.DS_Store
+
+

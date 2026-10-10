@@ -1,0 +1,192 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Fraunces", "Iowan Old Style", Palatino, serif;
+  --color-bg: #f6f1e8;
+  --color-surface: #fffdf8;
+  --color-fg: #1a1714;
+  --color-muted: #6f675e;
+  --color-clay: #9a3412;
+  --color-clay-deep: #7c2d12;
+  --color-sand: #e7dfd2;
+  --color-line: #e0d6c8;
+  --color-indigo: #243e66;
+  --color-brass: #a68445;
+  --color-oat: #cbbfaa;
+  --color-ink: #1a1714;
+  --radius-card: 2px;
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background: var(--color-bg);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+    text-wrap: pretty;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    text-wrap: balance;
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-clay);
+    outline-offset: 3px;
+  }
+
+  ::selection {
+    background: var(--color-clay);
+    color: var(--color-surface);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+.mark {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-sand);
+  color: var(--color-bg);
+}
+
+.mark[data-tone="indigo"] {
+  background: var(--color-indigo);
+}
+.mark[data-tone="clay"] {
+  background: var(--color-clay);
+}
+.mark[data-tone="brass"] {
+  background: var(--color-brass);
+  color: var(--color-fg);
+}
+.mark[data-tone="oat"] {
+  background: var(--color-oat);
+  color: var(--color-fg);
+}
+.mark[data-tone="ink"] {
+  background: var(--color-ink);
+}
+
+.mark::after {
+  content: "";
+  position: absolute;
+  inset: 14%;
+}
+
+.mark-weave::after {
+  background: repeating-linear-gradient(
+    90deg,
+    transparent 0 10px,
+    color-mix(in srgb, currentColor 42%, transparent) 10px 12px
+  );
+}
+
+.mark-stripe::after {
+  inset: 18% 10%;
+  background: repeating-linear-gradient(
+    180deg,
+    transparent 0 18px,
+    color-mix(in srgb, currentColor 50%, transparent) 18px 28px
+  );
+}
+
+.mark-fold::after {
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    transparent 46%,
+    color-mix(in srgb, currentColor 35%, transparent) 46% 54%,
+    transparent 54%
+  );
+}
+
+.mark-vessel::after {
+  inset: 18% 30% 12%;
+  border: 2px solid currentColor;
+  border-radius: 45% 45% 38% 38%;
+  background: transparent;
+}
+
+.mark-disc::after {
+  inset: 22%;
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 35% 30%, color-mix(in srgb, var(--color-bg) 55%, transparent), transparent 40%),
+    color-mix(in srgb, currentColor 35%, transparent);
+}
+
+.mark-stack::after {
+  inset: 22% 18%;
+  background:
+    linear-gradient(currentColor, currentColor) 0 70% / 100% 10% no-repeat,
+    linear-gradient(currentColor, currentColor) 8% 48% / 84% 10% no-repeat,
+    linear-gradient(currentColor, currentColor) 16% 26% / 68% 10% no-repeat;
+}
+
+.mark-flame::after {
+  inset: 28%;
+  border-radius: 999px 999px 999px 999px;
+  background: radial-gradient(circle at 50% 45%, currentColor 0 28%, transparent 30%);
+  box-shadow: 0 0 0 10px color-mix(in srgb, currentColor 25%, transparent);
+}
+
+.mark-pair::after {
+  inset: 16% 30%;
+  background:
+    linear-gradient(currentColor, currentColor) 18% 0 / 8% 100% no-repeat,
+    linear-gradient(currentColor, currentColor) 74% 12% / 8% 88% no-repeat;
+}
+
+.mark-coil::after {
+  inset: 16%;
+  border-radius: 999px;
+  background: repeating-radial-gradient(
+    circle at 50% 50%,
+    transparent 0 8px,
+    currentColor 8px 10px
+  );
+}
+
+.mark-cup::after {
+  inset: 22% 28% 18%;
+  border: 2px solid currentColor;
+  border-bottom-width: 8px;
+  border-radius: 4px 4px 12px 12px;
+}
+
+.mark-block::after {
+  inset: 18%;
+  background:
+    linear-gradient(currentColor, currentColor) 0 0 / 42% 42% no-repeat,
+    linear-gradient(currentColor, currentColor) 58% 0 / 42% 18% no-repeat,
+    linear-gradient(currentColor, currentColor) 0 58% / 18% 42% no-repeat,
+    linear-gradient(currentColor, currentColor) 32% 58% / 68% 42% no-repeat;
+  opacity: 0.85;
+}
+
+.mark-spout::after {
+  inset: 30% 22% 24%;
+  background: currentColor;
+  clip-path: polygon(0 20%, 70% 20%, 100% 0, 100% 100%, 70% 80%, 0 80%);
+}
